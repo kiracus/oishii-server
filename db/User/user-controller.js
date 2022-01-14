@@ -84,7 +84,7 @@ module.exports = (app) => {
                 if(user && !user.isDeleted) {
                     console.log(" USER login")
                     req.session['profile'] = user;
-                    console.log(user);
+                    // console.log(user);
                     userRecipe = user.usersRecipe
                     res.json(user);
                     return;
