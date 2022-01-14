@@ -79,7 +79,7 @@ module.exports = (app) =>  {
     
     const fetchByIngredients= (req, res) => {
         const recipeList = `/recipes/findByIngredients?ingredients=${req.params.ingredients}&number=8&ignorePantry=true&ranking=1`;
-        console.log("in fetchByTagAndIngredients -->", recipeList);
+        // console.log("in fetchByTagAndIngredients -->", recipeList);
         fetch(URL + recipeList, {
             "method": "GET",
             "headers": {
@@ -101,7 +101,7 @@ module.exports = (app) =>  {
     
     const fetchByIngredients1= (req, res) => {
         const recipeList = `/recipes/search?query=${req.params.ingredients}&number=10&offset=10`;
-        console.log("in fetchByIngredients1 -->", recipeList);
+        // console.log("in fetchByIngredients1 -->", recipeList);
         fetch(URL + recipeList, {
             "method": "GET",
             "headers": {
@@ -125,7 +125,7 @@ module.exports = (app) =>  {
    
     const fetchInstruction = (req, res) =>{
         const instruction = `/recipes/${req.params.id}/analyzedInstructions?stepBreakdown=true`;
-        console.log("in fetchInstruction -->", instruction);
+        // console.log("in fetchInstruction -->", instruction);
         fetch(URL + instruction, {
             "method": "GET",
             "headers": {
@@ -167,7 +167,7 @@ module.exports = (app) =>  {
     
     const fetchRandom = (req, res) =>{
         const trending = `/recipes/random?number=4`;
-        console.log("in random -->", trending);
+        // console.log("in random -->", trending);
         fetch(URL + trending, {
             "method": "GET",
             "headers": {

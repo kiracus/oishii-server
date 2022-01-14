@@ -17,13 +17,13 @@ module.exports = (app) => {
     const addToMenu = (req, res) =>{
         const menuId = req.body.menuId;
         const recipeId = req.body.recipeId;
-        console.log("________");
-        console.log(typeof recipeId)
+        // console.log("________");
+        // console.log(typeof recipeId)
         
         MenuDao.addToMenu(menuId, recipeId)
         // MenuDao.addToMenu(1, 241775)
             .then(status => {
-                console.log(`add ${recipeId} to ${menuId} -----`)
+                // console.log(`add ${recipeId} to ${menuId} -----`)
                 // console.log("add 241775 to 1 ---")
                 res.sendStatus(200)
                 
@@ -34,11 +34,11 @@ module.exports = (app) => {
     
     const deleteRecipeFromMenu = (req, res) =>{
         const recipeId = req.body.recipeId;
-        console.log("in deleteRecipe", recipeId, "from ", req.body.menuId);
+        // console.log("in deleteRecipe", recipeId, "from ", req.body.menuId);
         MenuDao.deleteRecipe(req.body.menuId, recipeId)
             .then(status => {
                 // delete from recent recipeList
-                    console.log("API recipe deleted");
+                    // console.log("API recipe deleted");
                     res.sendStatus(200);
                 })
     }

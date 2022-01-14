@@ -13,7 +13,7 @@ module.exports = (app) => {
     const findAllUsers = (req, res) =>
         userDao.findAllUsers()
             .then(users => {
-                console.log(" all user list ==>", users.length)
+                // console.log(" all user list ==>", users.length)
                 res.json(users)
             });
 
@@ -43,7 +43,7 @@ module.exports = (app) => {
     
     const changeRole = (req, res) =>{
         const current = req.body.currentRole;
-        console.log(req.body.userId, current)
+        // console.log(req.body.userId, current)
         
         if (current === "normal") {
             userDao.changeRoleToEditor(req.body.userId)
@@ -57,14 +57,14 @@ module.exports = (app) => {
     
 
     const deleteUser = (req, res) => {
-        console.log("delete --", req.body.userId)
+        // console.log("delete --", req.body.userId)
         userDao.deleteUser(req.body.userId)
             .then(status => res.send(status));
     }
 
 
     const updateProfile = (req, res) => {
-        console.log("before update user");
+        // console.log("before update user");
         userDao.updateUser(req.body.user)
             .then(status => {
                 req.session['profile'] = req.body.user;
@@ -94,7 +94,7 @@ module.exports = (app) => {
     }
     
     const register = (req, res) => {
-        console.log(" NEW REGISTER REQUEST");
+        // console.log(" NEW REGISTER REQUEST");
         const hashedUser = {
             ...req.body,
             password: stringToHash(req.body.password),
@@ -133,7 +133,7 @@ module.exports = (app) => {
             res.sendStatus(404);
             return;
         }
-        console.log("in like recipe, received -->", recipeID, userID);
+        // console.log("in like recipe, received -->", recipeID, userID);
         userDao.addFavRecipe(userID, recipeID)
             .then(status => {
                 allRecipeDao.addFollower(recipeID, userID)
@@ -158,7 +158,7 @@ module.exports = (app) => {
             res.sendStatus(404);
             return;
         }
-        console.log("in -unlike- recipe, received -->", recipeID);
+        // console.log("in -unlike- recipe, received -->", recipeID);
         userDao.removeFavRecipe(userID, recipeID)
             .then(status => {
                 allRecipeDao.removeFollower(recipeID, userID)
@@ -176,7 +176,7 @@ module.exports = (app) => {
     const likeUser= (req, res) => {
         const userId = req.body.userId;
         const otherUserId = req.body.otherUserId;
-        console.log("in like user, received -->", userId, otherUserId);
+        // console.log("in like user, received -->", userId, otherUserId);
         userDao.likeUser(userId, otherUserId)
             .then(status => {
                 res.send(status);
@@ -187,7 +187,7 @@ module.exports = (app) => {
     const unLikeUser = (req, res) => {
         const userId = req.body.userId;
         const otherUserId = req.body.otherUserId;
-        console.log("in -unlike- user, received -->", userId, otherUserId);
+        // console.log("in -unlike- user, received -->", userId, otherUserId);
         userDao.unLikeUser(userId, otherUserId)
             .then(status => {
                 res.send(status);
@@ -246,14 +246,14 @@ module.exports = (app) => {
     const deleteRecipe = (req, res) =>{
         const recipeId = req.body.recipeId;
         const sourceName = req.body.sourceName;
-        console.log("in deleteRecipe", recipeId, "from ", sourceName);
+        // console.log("in deleteRecipe", recipeId, "from ", sourceName);
         userRecipeDao.deleteRecipe(recipeId)
             .then( status => {
                 // delete from recent recipe list
-                console.log("remove from latest recipe list");
+                // console.log("remove from latest recipe list");
                 userDao.deleteRecipe(sourceName, recipeId)
                     .then(status =>{
-                        console.log('remove from user recipe list')
+                        // console.log('remove from user recipe list')
                         const user = req.session['profile'];
                         user.usersRecipe = user.usersRecipe.filter(item => item !== recipeId)
                         req.session['profile'] = user;

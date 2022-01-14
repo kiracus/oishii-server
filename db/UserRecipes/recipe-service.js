@@ -5,11 +5,11 @@ const userDao = require('../User/user-dao');
 
 module.exports = (app) => {
     const findAllRecipes = (req, res) => {
-        console.log("want all recipes");
+        // console.log("want all recipes");
         dao.findAllRecipes()
             .then(recipes => {
-                console.log("all latest recipes", recipes.length)
-                console.log(typeof recipes[0].id);
+                // console.log("all latest recipes", recipes.length)
+                // console.log(typeof recipes[0].id);
                 res.json(recipes)
             })
     };
@@ -26,7 +26,7 @@ module.exports = (app) => {
     };
     
     const findRecipeByTitle = (req, res) => {
-        console.log("Title of Recipe ", req.body.title);
+        // console.log("Title of Recipe ", req.body.title);
         dao.findRecipeByTitle(req.body.title)
             .then(data => {
                     // console.log("returned data", data);
